@@ -8,6 +8,9 @@ namespace KnowledgeBaseApi.Models
         }
 
         public long Id { get; set; }
-        public string Name { get; set; }
+        public string Title { get; set; }
+        public string Url { get; set; }
+        public string Summary { get; set; }
+        public int[] TagIds { get; set; }
     }
 }

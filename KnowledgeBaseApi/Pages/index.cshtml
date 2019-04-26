@@ -13,26 +13,30 @@
         <h1>Knowledge Base UI</h1>
         <div id="container">
             <header>
-                h3 Search
-                form#search-form(
+                <h3>Search</h3>
+                <form id="search-form"
                     name="searchForm"
                     v-on:submit="submitSearch(event)"
                     autocomplete="off"
-                )
-                    div(style="display: inline-block;")
-                        input(
+                >
+                    <div style="display: inline-block;">
+                        <input
                             name="searchString"
                             type="text"
                             v-model="searchString"
                             v-on:keyup="suggestSearchString(event)"
-                        )
-                        ul#suggestions
-                            suggestion(
+                        >
+                        <ul id="suggestions">
+                            <suggestion
                                 v-for="suggestion in suggestions"
                                 v-bind:suggestion="suggestion"
-                            )
-                    div(style="display: inline-block; vertical-align: top;")
-                        button(type="submit") Submit
+                            >
+                        </ul>
+                    </div>
+                    <div style="display: inline-block; vertical-align: top;">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
             </header>
             <div class="sidebar">
                 <h3>Tags</h3>
@@ -45,13 +49,14 @@
                 </div>
             </div>
             <main>
-                h3 Results
-                div#results
-                    result(
+                <h3>Results</h3>
+                <div id="results">
+                    <result
                         v-for="result in clientResults"
                         v-bind:result="result"
                         v-bind:key="result.id"
-                    )
+                    >
+                </div>
             </main>
         </div>
         <script src="components.js"></script>

@@ -24,6 +24,8 @@ namespace KnowledgeBaseApi
                 opt.UseInMemoryDatabase("ArticleList"));
             services.AddDbContext<TagContext>(opt =>
                 opt.UseInMemoryDatabase("TagList"));
+                services.AddDbContext<SuggestionContext>(opt =>
+                opt.UseInMemoryDatabase("SuggestionList"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

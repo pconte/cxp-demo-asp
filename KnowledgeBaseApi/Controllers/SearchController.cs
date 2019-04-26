@@ -11,24 +11,34 @@ namespace KnowledgeBaseApi.Controllers
     [ApiController]
     public class SearchController : ControllerBase
     {
-        private readonly ArticleContext _context;
+        private readonly ArticleContext _articleContext;
+        private readonly SuggestionContext _suggestionContext;
 
-        public SearchController(ArticleContext context)
+        public SearchController(ArticleContext articleContext, SuggestionContext suggestionContext)
         {
-            _context = context;
+            _articleContext = articleContext;
+            _suggestionContext = suggestionContext;
 
-            if (_context.Articles.Count() == 0)
+            if (_articleContext.Articles.Count() == 0)
             {
-                _context.Articles.Add(new Article { Name = "Article1" });
-                _context.SaveChanges();
+                _articleContext.Articles.Add(new Article {
+                    Id = 1,
+                    Title = "Article1",
+                    Url = "website.com/path",
+                    TagIds = new int[] { 1, 3, 5 }
+                });
+                _articleContext.SaveChanges();
             }
         }
 
         // POST: api/search
         [HttpPost]
-        public async Task<ActionResult<IEnumerable<Article>>> PostSearch()
+        public async Task<ActionResult<IEnumerable<Article>>> PostSearch(string searchString)
         {
-            return await _context.Articles.ToListAsync();
+            // _suggestionContext.Suggestions.Add(new Suggestion { SearchString = searchString });
+            // _suggestionContext.SaveChanges();
+
+            return await _articleContext.Articles.ToListAsync();
         }
     }
 }

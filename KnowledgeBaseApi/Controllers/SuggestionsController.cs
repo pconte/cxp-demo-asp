@@ -16,12 +16,6 @@ namespace KnowledgeBaseApi.Controllers
         public SuggestionsController(SuggestionContext context)
         {
             _context = context;
-
-            if (_context.Suggestions.Count() == 0)
-            {
-                _context.Suggestions.Add(new Suggestion { Name = "Suggestion1" });
-                _context.SaveChanges();
-            }
         }
 
         // GET: api/suggestions
@@ -35,14 +29,14 @@ namespace KnowledgeBaseApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Suggestion>> GetSuggestion(long id)
         {
-            var tag = await _context.Suggestions.FindAsync(id);
+            var suggestion = await _context.Suggestions.FindAsync(id);
 
-            if (tag == null)
+            if (suggestion == null)
             {
                 return NotFound();
             }
 
-            return tag;
+            return suggestion;
         }
     }
 }

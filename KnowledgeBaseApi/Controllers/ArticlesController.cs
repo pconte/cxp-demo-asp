@@ -19,7 +19,12 @@ namespace KnowledgeBaseApi.Controllers
 
             if (_context.Articles.Count() == 0)
             {
-                _context.Articles.Add(new Article { Name = "Article1" });
+                _context.Articles.Add(new Article {
+                    Id = 1,
+                    Title = "Article1",
+                    Url = "website.com/path",
+                    TagIds = new int[] { 1, 3, 5 }
+                });
                 _context.SaveChanges();
             }
         }
