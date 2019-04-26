@@ -1,0 +1,59 @@
+@page
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<!doctype html>
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <link rel="stylesheet" href="styles.css" type="text/css" />
+    </head>
+        <title>Knowledge Base UI</title>
+    <body>
+        <h1>Knowledge Base UI</h1>
+        <div id="container">
+            <header>
+                h3 Search
+                form#search-form(
+                    name="searchForm"
+                    v-on:submit="submitSearch(event)"
+                    autocomplete="off"
+                )
+                    div(style="display: inline-block;")
+                        input(
+                            name="searchString"
+                            type="text"
+                            v-model="searchString"
+                            v-on:keyup="suggestSearchString(event)"
+                        )
+                        ul#suggestions
+                            suggestion(
+                                v-for="suggestion in suggestions"
+                                v-bind:suggestion="suggestion"
+                            )
+                    div(style="display: inline-block; vertical-align: top;")
+                        button(type="submit") Submit
+            </header>
+            <div class="sidebar">
+                <h3>Tags</h3>
+                <div id="tags">
+                    <tag
+                        v-for="tag in tags"
+                        v-bind:tag="tag"
+                        v-bind:key="tag.id"
+                    >
+                </div>
+            </div>
+            <main>
+                h3 Results
+                div#results
+                    result(
+                        v-for="result in clientResults"
+                        v-bind:result="result"
+                        v-bind:key="result.id"
+                    )
+            </main>
+        </div>
+        <script src="components.js"></script>
+    </body>
+</html>

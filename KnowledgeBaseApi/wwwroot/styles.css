@@ -1,0 +1,83 @@
+body {
+}
+
+h1, h2, h3 {
+    padding: 0;
+    margin: 0;
+}
+
+/* layout view */
+
+#container {
+    display: grid;
+    grid-template-columns: 200px 200px 1fr 150px;
+    grid-template-rows: auto;
+    grid-template-areas: 
+      "header header header header"
+      ". tags results results";
+    border: solid 1px #000000;
+    margin: 20px;
+    width: 95%;
+    justify-content: stretch;
+}
+
+header {
+    grid-area: header;
+    background: #eeeeee;
+    height: 70px;
+}
+.sidebar {
+    grid-area: tags;
+    background: #dddddd;
+}
+main {
+    grid-area: results;
+    background: #ffffff;
+}
+
+
+/* index view */
+
+form#search-form {
+    padding: 10px;
+}
+form#search-form ul#suggestions {
+    border: solid 1px black;
+    background: #efefef;
+    padding: 5px;
+    margin: 0;
+    width: 130px;
+    height: auto;
+    overflow: visible;
+    list-style: none;
+}
+
+#tags {
+    padding: 10px;
+}
+#tags .tag {
+    padding: 2px;
+}
+#tags .tag .name {
+    padding-left: 5px;
+}
+
+#results {
+    padding: 10px;
+}
+#results .result {
+    background: #fefefe;
+    margin: 10px;
+}
+#results .result .title {
+    display: block;
+    font-weight: 900;
+}
+#results .result .url {
+    display: block;
+    color: blue;
+    text-decoration: underline;
+}
+#results .result .summary {
+    display: block;
+}
