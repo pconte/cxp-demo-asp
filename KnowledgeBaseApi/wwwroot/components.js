@@ -158,6 +158,7 @@ var container = new Vue({
             xmlhttp.setRequestHeader("Content-type", "application/json");
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
                     callback(JSON.parse(this.responseText));
                 }
             };

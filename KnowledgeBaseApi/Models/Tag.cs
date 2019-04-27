@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace KnowledgeBaseApi.Models
 {
     public class Tag
@@ -7,9 +9,10 @@ namespace KnowledgeBaseApi.Models
         {
         }
 
-        public long Id { get; set; }
+        public long TagId { get; set; }
         public string Name { get; set; }
         public bool IsSelected { get; set; } = false;
         public bool IsInitSelected { get; set; } = false;
+        public List<ArticleTag> Articles { get; set; }
     }
 }

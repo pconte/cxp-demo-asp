@@ -11,9 +11,9 @@ namespace KnowledgeBaseApi.Controllers
     [ApiController]
     public class SuggestionsController : ControllerBase
     {
-        private readonly SuggestionContext _context;
+        private readonly ApiContext _context;
 
-        public SuggestionsController(SuggestionContext context)
+        public SuggestionsController(ApiContext context)
         {
             _context = context;
         }

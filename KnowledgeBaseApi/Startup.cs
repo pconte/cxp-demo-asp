@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using KnowledgeBaseApi.Models;
@@ -21,12 +23,8 @@ namespace KnowledgeBaseApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ArticleContext>(opt =>
-                opt.UseInMemoryDatabase("ArticleList"));
-            services.AddDbContext<TagContext>(opt =>
-                opt.UseInMemoryDatabase("TagList"));
-                services.AddDbContext<SuggestionContext>(opt =>
-                opt.UseInMemoryDatabase("SuggestionList"));
+            services.AddDbContext<ApiContext>(opt =>
+                opt.UseInMemoryDatabase("KnowledgeBase"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -53,5 +51,16 @@ namespace KnowledgeBaseApi
                 }
             });
         }
+
+        // public class ApiContextFactory : IDesignTimeDbContextFactory<ApiContext>
+        // {
+        //     public ApiContext CreateDbContext(string[] args)
+        //     {
+        //         var optionsBuilder = new DbContextOptionsBuilder<ApiContext>();
+        //         optionsBuilder.UseSqlite("Data Source=KnowledgeBase.db");
+
+        //         return new ApiContext(optionsBuilder.Options);
+        //     }
+        // }
     }
 }

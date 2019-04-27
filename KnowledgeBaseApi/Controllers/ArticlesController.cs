@@ -11,27 +11,11 @@ namespace KnowledgeBaseApi.Controllers
     [ApiController]
     public class ArticlesController : ControllerBase
     {
-        private readonly ArticleContext _context;
+        private readonly ApiContext _context;
 
-        public ArticlesController(ArticleContext context)
+        public ArticlesController(ApiContext context)
         {
             _context = context;
-
-            if (_context.Articles.Count() == 0)
-            {
-                _context.Articles.Add(new Article {
-                    Id = 1,
-                    Title = "Article1",
-                    Summary = "",
-                    Url = "website.com/path",
-                    Tags = new List<Tag> {
-                        new Tag { Id = 1, Name = "aaa" },
-                        new Tag { Id = 3, Name = "ccc" },
-                        new Tag { Id = 5, Name = "eee" }
-                    }
-                });
-                _context.SaveChanges();
-            }
         }
 
         // GET: api/articles

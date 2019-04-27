@@ -11,46 +11,13 @@ namespace KnowledgeBaseApi.Controllers
     [ApiController]
     public class TagsController : ControllerBase
     {
-        private readonly TagContext _context;
+        private readonly ApiContext _context;
 
-        public TagsController(TagContext context)
+        public TagsController(ApiContext context)
         {
             _context = context;
 
-            if (_context.Tags.Count() == 0)
-            {
-                _context.Tags.Add(new Tag {
-                    Id = 1,
-                    Name = "Tag1",
-                    IsSelected = false,
-                    IsInitSelected = false
-                });
-                _context.Tags.Add(new Tag {
-                    Id = 2,
-                    Name = "Tag2",
-                    IsSelected = false,
-                    IsInitSelected = false
-                });
-                _context.Tags.Add(new Tag {
-                    Id = 3,
-                    Name = "Tag3",
-                    IsSelected = false,
-                    IsInitSelected = false
-                });
-                _context.Tags.Add(new Tag {
-                    Id = 4,
-                    Name = "Tag4",
-                    IsSelected = false,
-                    IsInitSelected = false
-                });
-                _context.Tags.Add(new Tag {
-                    Id = 5,
-                    Name = "Tag5",
-                    IsSelected = false,
-                    IsInitSelected = false
-                });
-                _context.SaveChanges();
-            }
+            _context.Database.EnsureCreated();
         }
 
         // GET: api/tags
