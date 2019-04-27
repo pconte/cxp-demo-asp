@@ -104,8 +104,8 @@ var container = new Vue({
     
             if (searchString && searchString !== '') {
                 this.postSearch(body, function (response) {
-                    container.$data.serverResults = response.results;
-                    container.$data.clientResults = response.results;
+                    container.$data.serverResults = response;
+                    container.$data.clientResults = response;
                     container.$data.searchString = '';
                 });
             }

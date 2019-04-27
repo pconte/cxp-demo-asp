@@ -22,8 +22,13 @@ namespace KnowledgeBaseApi.Controllers
                 _context.Articles.Add(new Article {
                     Id = 1,
                     Title = "Article1",
+                    Summary = "",
                     Url = "website.com/path",
-                    TagIds = new int[] { 1, 3, 5 }
+                    Tags = new List<Tag> {
+                        new Tag { Id = 1, Name = "aaa" },
+                        new Tag { Id = 3, Name = "ccc" },
+                        new Tag { Id = 5, Name = "eee" }
+                    }
                 });
                 _context.SaveChanges();
             }

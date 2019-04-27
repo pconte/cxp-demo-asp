@@ -24,8 +24,13 @@ namespace KnowledgeBaseApi.Controllers
                 _articleContext.Articles.Add(new Article {
                     Id = 1,
                     Title = "Article1",
+                    Summary = "",
                     Url = "website.com/path",
-                    TagIds = new int[] { 1, 3, 5 }
+                    Tags = new List<Tag>() {
+                        new Tag() { Id = 1, Name = "aaa" },
+                        new Tag() { Id = 3, Name = "ccc" },
+                        new Tag() { Id = 5, Name = "eee" }
+                    }
                 });
                 _articleContext.SaveChanges();
             }
@@ -35,7 +40,10 @@ namespace KnowledgeBaseApi.Controllers
         [HttpPost]
         public async Task<ActionResult<IEnumerable<Article>>> PostSearch(string searchString)
         {
-            // _suggestionContext.Suggestions.Add(new Suggestion { SearchString = searchString });
+            // _suggestionContext.Suggestions.Add(new Suggestion {
+            //     SearchString = searchString,
+            //     Count = 1
+            // });
             // _suggestionContext.SaveChanges();
 
             return await _articleContext.Articles.ToListAsync();

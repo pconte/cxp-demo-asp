@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using KnowledgeBaseApi.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace KnowledgeBaseApi
 {
@@ -43,7 +44,14 @@ namespace KnowledgeBaseApi
 
             app.UseHttpsRedirection();
             app.UseMvc();
-            app.UseStaticFiles();
+            var cachePeriod = env.IsDevelopment() ? "1" : "1";
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = ctx =>
+                {
+                    ctx.Context.Response.Headers.Append("Cache-Control", $"public, max-age={cachePeriod}");
+                }
+            });
         }
     }
 }

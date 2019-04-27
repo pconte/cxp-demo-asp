@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace KnowledgeBaseApi.Models
 {
     public class Article
@@ -11,6 +13,6 @@ namespace KnowledgeBaseApi.Models
         public string Title { get; set; }
         public string Url { get; set; }
         public string Summary { get; set; }
-        public int[] TagIds { get; set; }
+        public List<Tag> Tags { get; set; }
     }
 }
